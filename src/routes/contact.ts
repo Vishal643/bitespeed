@@ -6,7 +6,10 @@ dotenv.config();
 
 export function saveContact(app: Express) {
   app.post("/identify", async function (req, res) {
-    const { phoneNumber, email } = req.body;
+    let { phoneNumber, email } = req.body;
+
+    phoneNumber = String(phoneNumber);
+    email = String(email);
 
     try {
       // find all the contacts with the given email or phone number sorted by created date
