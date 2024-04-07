@@ -5,38 +5,32 @@ import {
   BaseEntity,
   UpdateDateColumn,
   CreateDateColumn,
-  ManyToMany,
-  JoinColumn
+  DeleteDateColumn
 } from "typeorm";
-import { IsEmail } from "class-validator";
 
 @Entity({
   database: process.env.DB_NAME,
   synchronize: process.env.DB_SYNCHRONIZE === "true"
 })
-export class User extends BaseEntity {
+export class Contact extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: "varchar", nullable: true })
   phoneNumber: string | null;
 
-  @Column({
-    nullable: true
-  })
-  @IsEmail()
-  email: string | null;
+  @Column({ type: "varchar", length: 255, nullable: true }) // Use "varchar" data type for strings
+  email: string;
 
   // the ID of another Contact linked to this one (if any) make it foreign key
-  @ManyToMany(() => User)
-  @JoinColumn({ name: "linkedId", referencedColumnName: "linkedId" })
   @Column({ type: "varchar", nullable: true })
   linkedId: string | null;
 
   @Column({
     nullable: false,
     type: "enum",
-    enum: ["PRIMARY", "SECONDARY"]
+    enum: ["PRIMARY", "SECONDARY"],
+    default: "PRIMARY"
   })
   linkPrecedence: "PRIMARY" | "SECONDARY";
 
@@ -46,6 +40,6 @@ export class User extends BaseEntity {
   @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;
 
-  @Column({ name: "deleted_at", nullable: true })
+  @DeleteDateColumn({ name: "deleted_at", nullable: true })
   deletedAt: Date | null;
 }

@@ -1,7 +1,6 @@
 /**
  * @description pm2 configuration file.
  * @example
- *  production mode :: pm2 start ecosystem.config.js --only prod
  *  development mode :: pm2 start ecosystem.config.js --only dev
  */
 module.exports = {
@@ -22,8 +21,8 @@ module.exports = {
       env: {
         // environment variable
         SERVER_PORT: 3000,
-        NODE_ENV: "test",
-        COOKIE_DOMAIN: "masaischool.com"
+        NODE_ENV: "test"
+        // COOKIE_DOMAIN: ""
       }
     }
   ],
