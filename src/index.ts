@@ -1,10 +1,5 @@
 import dotenv from "dotenv";
-import fs from "fs";
 dotenv.config();
-const envConfig = dotenv.parse(fs.readFileSync(".env"));
-for (const k in envConfig) {
-  process.env[k] = envConfig[k];
-}
 import express from "express";
 import cors from "cors";
 
