@@ -23,8 +23,8 @@ export class Contact extends BaseEntity {
   email: string;
 
   // the ID of another Contact linked to this one (if any) make it foreign key
-  @Column({ type: "varchar", nullable: true })
-  linkedId: string | null;
+  @Column({ nullable: true })
+  linkedId: number;
 
   @Column({
     nullable: false,

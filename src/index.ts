@@ -53,8 +53,8 @@ const AppDataSource = new DataSource({
   ssl: {
     rejectUnauthorized: false // Bypass SSL certificate validation
   },
-  entities: ["src/entity/**/*.ts"],
-  logging: process.env.DB_LOGGING === "true"
+  entities: ["src/entity/**/*.ts"]
+  //   logging: process.env.DB_LOGGING === "true"
 });
 
 AppDataSource.initialize()
