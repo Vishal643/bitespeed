@@ -7,7 +7,7 @@
 
 # Endpoints to test
 
-# Deployed API => https://bitespeed-f833.onrender.com 
+# Deployed API => https://bitespeed-f833.onrender.com/identify
 
 1. Health check endpoint
     - Method: GET
@@ -20,8 +20,8 @@
     - Method: POST
     - URL: /identify
     - Description: This endpoint is used to save contacts
-    - Example: http://localhost:3000/contacts
-    - Example: https://bitespeed-f833.onrender.com/contacts
+    - Example: http://localhost:3000/identify
+    - Example: https://bitespeed-f833.onrender.com/identify
     - Request Body:
         ```json
         {
