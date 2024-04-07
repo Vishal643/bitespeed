@@ -137,7 +137,10 @@ export function saveContact(app: Express) {
               });
             }
 
-            const secondaryContacts = contacts.filter(contact => contact.linkPrecedence === "SECONDARY");
+            const isBothPrimary = contacts.every(contact => contact.linkPrecedence === "PRIMARY");
+            const secondaryContacts = isBothPrimary
+              ? contacts.filter(contact => contact.id !== primaryContact.id)
+              : contacts.filter(contact => contact.linkPrecedence === "SECONDARY");
 
             const phoneNumbers = contacts
               .map(contact => contact.phoneNumber)
@@ -145,9 +148,7 @@ export function saveContact(app: Express) {
             const emails = contacts
               .map(contact => contact.email)
               .filter((email, index, self) => self.indexOf(email) === index);
-            const secondaryContactIds = secondaryContact
-              ? [...secondaryContacts?.map(contact => contact.id)]
-              : secondaryContacts?.map(contact => contact.id);
+            const secondaryContactIds = secondaryContacts?.map(contact => contact.id);
 
             const payload = {
               primaryContatctId: primaryContact.id,
